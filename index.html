@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17152c">
+<title>جادو | المتجر الإلكتروني</title>
+
+<style>
+:root {
+  --primary:#7055df;
+  --primary-dark:#5039b5;
+  --dark:#17152c;
+  --bg:#f5f6fb;
+  --white:#fff;
+  --muted:#858ba0;
+  --border:#e8e9f0;
+  --green:#15966a;
+}
+
+* {box-sizing:border-box}
+
+body {
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+}
+
+button,input,textarea {font-family:inherit}
+button {cursor:pointer}
+
+/* HEADER */
+.topbar {
+  background:var(--dark);
+  color:white;
+  padding:14px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.brand {
+  font-size:25px;
+  font-weight:bold;
+}
+
+.brand span {color:#a995ff}
+
+.top-actions {
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.top-note {
+  color:#c9c6d9;
+  font-size:12px;
+}
+
+.whatsapp-link {
+  background:#15966a;
+  color:white;
+  padding:10px 15px;
+  text-decoration:none;
+  border-radius:9px;
+  font-weight:bold;
+  font-size:13px;
+}
+
+/* HERO */
+.hero {
+  background:linear-gradient(120deg,#211944,#5944bd,#8973ed);
+  color:white;
+  padding:48px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.hero h1 {
+  margin:0 0 12px;
+  font-size:clamp(25px,4vw,42px);
+}
+
+.hero p {
+  color:#e7e2ff;
+  line-height:1.9;
+  margin:0;
+}
+
+.hero-tag {
+  padding:15px 20px;
+  background:#ffffff20;
+  border:1px solid #ffffff50;
+  border-radius:15px;
+}
+
+/* MAIN */
+main {
+  max-width:1350px;
+  margin:30px auto;
+  padding:0 20px;
+}
+
+.store-layout {
+  display:grid;
+  grid-template-columns:225px minmax(0,1fr);
+  gap:22px;
+  align-items:start;
+}
+
+/* SIDEBAR / الأقسام */
+.sidebar {
+  background:linear-gradient(180deg, #ede9fe 0%, #f5f3ff 100%);
+  border:1px solid #ddd6fe;
+  border-radius:16px;
+  padding:17px;
+  position:sticky;
+  top:15px;
+  box-shadow:0 4px 14px rgba(112, 85, 223, 0.06);
+}
+
+.sidebar h3 {
+  margin:2px 0 15px;
+  font-size:18px;
+  color:var(--dark);
+}
+
+.filters {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.filter {
+  width:100%;
+  text-align:right;
+  border:1px solid #e2dcfb;
+  background:rgba(255, 255, 255, 0.75);
+  color:#4c466b;
+  border-radius:10px;
+  padding:11px 13px;
+  font-weight:500;
+  transition:all .2s ease;
+}
+
+.filter:hover {
+  background:#ffffff;
+  border-color:#c4b5fd;
+  color:var(--primary-dark);
+}
+
+.filter.active {
+  background:var(--primary);
+  color:#ffffff;
+  border-color:var(--primary);
+  font-weight:bold;
+  box-shadow:0 3px 10px rgba(112, 85, 223, 0.25);
+}
+
+.content-area {min-width:0}
+
+.toolbar {
+  display:flex;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.search {
+  width:270px;
+  max-width:100%;
+}
+
+.search input {
+  width:100%;
+  padding:10px 14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  outline:none;
+  background:white;
+}
+
+.search input:focus {border-color:var(--primary)}
+
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:22px 0 16px;
+}
+
+.section-head h2 {
+  font-size:21px;
+  margin:0;
+}
+
+.count {
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* PRODUCTS */
+.products {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:18px;
+}
+
+.card {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  transition:.2s;
+}
+
+.card:hover {transform:translateY(-4px)}
+
+.photo {
+  height:190px;
+  background:#f0f1f6;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.photo img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.info {padding:15px}
+
+.category {
+  display:inline-block;
+  background:#f0edff;
+  color:var(--primary);
+  border-radius:20px;
+  padding:5px 10px;
+  font-size:11px;
+}
+
+.name {
+  font-size:16px;
+  margin:12px 0;
+}
+
+.prices {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:12px 0;
+}
+
+.new {
+  color:var(--primary-dark);
+  font-size:19px;
+  font-weight:bold;
+}
+
+.old {
+  color:#999;
+  text-decoration:line-through;
+  font-size:13px;
+}
+
+.add {
+  width:100%;
+  border:none;
+  background:var(--dark);
+  color:white;
+  padding:12px;
+  border-radius:9px;
+  font-weight:bold;
+}
+
+.add:hover {background:var(--primary)}
+
+.empty {
+  background:white;
+  border:1px dashed #d8dce7;
+  border-radius:15px;
+  text-align:center;
+  padding:45px 15px;
+  color:var(--muted);
+  grid-column:1/-1;
+}
+
+/* CART */
+.cart-fab {
+  position:fixed;
+  bottom:22px;
+  left:22px;
+  z-index:5;
+  background:var(--primary);
+  color:white;
+  border:none;
+  border-radius:40px;
+  padding:15px 21px;
+  font-weight:bold;
+  box-shadow: 0 6px 18px rgba(112,85,223,0.35);
+}
+
+.cart-fab b {
+  background:white;
+  color:var(--primary);
+  padding:4px 9px;
+  border-radius:20px;
+  margin-right:5px;
+}
+
+/* MODAL */
+.overlay {
+  position:fixed;
+  inset:0;
+  background:#11182799;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:10;
+}
+
+.overlay.show {display:flex}
+
+.modal {
+  width:min(570px,100%);
+  max-height:90vh;
+  overflow-y:auto;
+  background:white;
+  border-radius:17px;
+}
+
+.modal-head {
+  padding:18px 20px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.modal-head h3 {margin:0}
+
+.close {
+  border:none;
+  background:#f0f1f6;
+  width:35px;
+  height:35px;
+  border-radius:8px;
+  font-size:21px;
+}
+
+.modal-body {padding:20px}
+
+.cart-line {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.cart-line small {
+  display:block;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.qty {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.qty button {
+  width:28px;
+  height:28px;
+  border:1px solid var(--border);
+  background:white;
+  border-radius:7px;
+}
+
+.remove {
+  border:none;
+  background:none;
+  color:#d34b59;
+  font-size:12px;
+  margin-top:6px;
+}
+
+.total-row {
+  display:flex;
+  justify-content:space-between;
+  padding:11px 0;
+  font-size:15px;
+}
+
+.total-final {
+  font-size:19px;
+  font-weight:bold;
+  color:var(--primary-dark);
+  border-top:1px solid var(--border);
+  margin-top:8px;
+  padding-top:15px;
+}
+
+.submit {
+  width:100%;
+  border:none;
+  background:var(--green);
+  color:white;
+  padding:14px;
+  border-radius:10px;
+  font-weight:bold;
+  margin-top:12px;
+  font-size:15px;
+}
+
+.submit:disabled {opacity:.6; cursor:not-allowed;}
+
+.field {margin-bottom:14px}
+
+.field label {
+  display:block;
+  font-size:13px;
+  margin-bottom:7px;
+  font-weight:bold;
+}
+
+.field input,.field textarea {
+  width:100%;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  outline:none;
+}
+
+.field textarea {min-height:80px}
+
+.hint {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+.toast {
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--dark);
+  color:white;
+  padding:13px 20px;
+  border-radius:10px;
+  display:none;
+  z-index:20;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.toast.show {display:block}
+
+footer {
+  text-align:center;
+  padding:30px 15px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* MOBILE */
+@media(max-width:760px) {
+  .store-layout {grid-template-columns:1fr}
+  .sidebar {position:static;padding:12px}
+  .filters {
+    flex-direction:row;
+    overflow-x:auto;
+    padding-bottom:4px;
+  }
+  .filter {width:auto;white-space:nowrap}
+}
+
+@media(max-width:600px) {
+  .topbar {padding:12px 4%}
+  .brand {font-size:20px}
+  .top-note {display:none}
+  .whatsapp-link {font-size:11px;padding:8px 9px}
+  .hero {
+    padding:30px 20px;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .products {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+  .photo {height:145px}
+  .info {padding:11px}
+  .name {font-size:14px}
+  .new {font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="toast" id="toast"></div>
+
+<header class="topbar">
+  <div class="brand">جادو <span>●</span></div>
+  <div class="top-actions">
+    <div class="top-note">تسوق بسهولة — طلبك يصلك أينما كنت</div>
+    <a class="whatsapp-link" href="https://wa.me/201555592855" target="_blank">
+       واتساب: 01555592855
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>مرحباً بك في متجر جادو</h1>
+    <p>اكتشف منتجاتنا واختر ما يناسبك وأرسل طلبك بسهولة.</p>
+  </div>
+  <div class="hero-tag">🛍️ تجربة تسوق مميزة</div>
+</section>
+
+<main>
+<div class="store-layout">
+  <aside class="sidebar">
+    <h3>📂 الأقسام</h3>
+    <nav class="filters" id="filters">
+      <button class="filter active" data-category="الكل">كل المنتجات</button>
+    </nav>
+  </aside>
+
+  <div class="content-area">
+    <div class="toolbar">
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="ابحث عن منتج...">
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2 id="sectionTitle">كل المنتجات</h2>
+      <span class="count" id="productsCount">جاري التحميل...</span>
+    </div>
+
+    <div class="products" id="productsGrid">
+      <div class="empty">جاري تحميل المنتجات من المتجر...</div>
+    </div>
+  </div>
+</div>
+</main>
+
+<button class="cart-fab" id="openCartBtn">
+  🛒 السلة <b id="cartCount">0</b>
+</button>
+
+<div class="overlay" id="cartOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>🛒 سلة المشتريات وإتمام الطلب</h3>
+      <button class="close" id="closeCartBtn">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div id="cartItems"></div>
+
+      <div id="checkoutSection" style="display:none;">
+        <div class="total-row">
+          <span>إجمالي المنتجات:</span>
+          <span id="subtotalPrice">0 ج.م</span>
+        </div>
+        <div class="total-row">
+          <span>مصاريف الشحن (أعلى قيمة شحن بالطلب):</span>
+          <span id="shippingPrice">0 ج.م</span>
+        </div>
+        <div class="total-row total-final">
+          <span>الإجمالي النهائي:</span>
+          <span id="finalTotalPrice">0 ج.م</span>
+        </div>
+
+        <hr style="border:none; border-top:1px solid var(--border); margin:18px 0;">
+
+        <form id="orderForm">
+          <div class="field">
+            <label>الاسم بالكامل *</label>
+            <input type="text" id="custName" required placeholder="أدخل اسمك">
+          </div>
+          <div class="field">
+            <label>رقم الهاتف (واتساب) *</label>
+            <input type="tel" id="custPhone" required placeholder="01xxxxxxxxx">
+          </div>
+          <div class="field">
+            <label>العنوان بالتفصيل *</label>
+            <textarea id="custAddress" required placeholder="المحافظة، المدينة، اسم الشارع، رقم العقار..."></textarea>
+          </div>
+          <p class="hint">ملاحظة: يتم احتساب أعلى قيمة شحن لمنتج واحد فقط في الطلب بالكامل ولا تتكرر مهما زادت الكمية.</p>
+          <button type="submit" class="submit" id="submitOrderBtn">تأكيد وإرسال الطلب ✅</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  جميع الحقوق محفوظة © متجر جادو الإلكتروني
+</footer>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx1V3-IDTPLCVRBrDDpQCiezSF63sIQ4jmaCyMdp-kjoqlkOeYFAE1qeK97R9ndzxQR/exec";
+
+let allProducts = [];
+let cart = [];
+let activeCategory = "الكل";
+
+const productsGrid = document.getElementById("productsGrid");
+const filtersContainer = document.getElementById("filters");
+const searchInput = document.getElementById("searchInput");
+const sectionTitle = document.getElementById("sectionTitle");
+const productsCount = document.getElementById("productsCount");
+const cartCount = document.getElementById("cartCount");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartItemsContainer = document.getElementById("cartItems");
+const checkoutSection = document.getElementById("checkoutSection");
+
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 3500);
+}
+
+// جلب المنتجات من Google Sheets
+async function loadProducts() {
+  try {
+    const res = await fetch(SCRIPT_URL);
+    allProducts = await res.json();
+    renderCategories();
+    renderProducts();
+  } catch (err) {
+    productsGrid.innerHTML = `<div class="empty">حدث خطأ في تحميل المنتجات. تأكد من اتصال الإنترنت.</div>`;
+    productsCount.textContent = "0 منتج";
+  }
+}
+
+function renderCategories() {
+  const categories = ["الكل", ...new Set(allProducts.map(p => p.category).filter(Boolean))];
+  filtersContainer.innerHTML = categories.map(cat => `
+    <button class="filter ${cat === activeCategory ? 'active' : ''}" data-category="${cat}">
+      ${cat === "الكل" ? "كل المنتجات" : cat}
+    </button>
+  `).join("");
+
+  filtersContainer.querySelectorAll(".filter").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeCategory = btn.dataset.category;
+      sectionTitle.textContent = activeCategory === "الكل" ? "كل المنتجات" : activeCategory;
+      renderCategories();
+      renderProducts();
+    });
+  });
+}
+
+function renderProducts() {
+  const query = searchInput.value.trim().toLowerCase();
+  const filtered = allProducts.filter(p => {
+    const matchCat = activeCategory === "الكل" || p.category === activeCategory;
+    const matchSearch = String(p.name).toLowerCase().includes(query);
+    return matchCat && matchSearch;
+  });
+
+  productsCount.textContent = `${filtered.length} منتج`;
+
+  if (filtered.length === 0) {
+    productsGrid.innerHTML = `<div class="empty">لا توجد منتجات مطابقة لبحثك حالياً.</div>`;
+    return;
+  }
+
+  productsGrid.innerHTML = filtered.map(p => `
+    <div class="card">
+      <div class="photo">
+        <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+      </div>
+      <div class="info">
+        <span class="category">${p.category || 'عام'}</span>
+        <h3 class="name">${p.name}</h3>
+        <div class="prices">
+          <span class="new">${p.newPrice} ج.م</span>
+          ${Number(p.oldPrice) > Number(p.newPrice) ? `<span class="old">${p.oldPrice} ج.م</span>` : ''}
+        </div>
+        <button class="add" onclick="addToCart('${p.id}')">أضف للسلة 🛒</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+searchInput.addEventListener("input", renderProducts);
+
+// إدارة السلة
+function addToCart(id) {
+  const product = allProducts.find(p => String(p.id) === String(id));
+  if (!product) return;
+
+  const existing = cart.find(item => String(item.id) === String(id));
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  updateCartUI();
+  showToast(`تمت إضافة "${product.name}" إلى السلة`);
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => String(i.id) === String(id));
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    cart = cart.filter(i => String(i.id) !== String(id));
+  }
+  updateCartUI();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => String(i.id) !== String(id));
+  updateCartUI();
+}
+
+function calculateTotals() {
+  let subtotal = 0;
+  let maxShipping = 0;
+  let totalQty = 0;
+
+  cart.forEach(item => {
+    subtotal += Number(item.newPrice) * item.qty;
+    totalQty += item.qty;
+    const itemShipping = Number(item.shipping) || 0;
+    if (itemShipping > maxShipping) {
+      maxShipping = itemShipping;
+    }
+  });
+
+  return {
+    subtotal,
+    shipping: maxShipping,
+    finalTotal: subtotal + maxShipping,
+    totalQty
+  };
+}
+
+function updateCartUI() {
+  const { subtotal, shipping, finalTotal, totalQty } = calculateTotals();
+  cartCount.textContent = totalQty;
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = `<div class="empty" style="padding:30px;">السلة فارغة حالياً</div>`;
+    checkoutSection.style.display = "none";
+    return;
+  }
+
+  checkoutSection.style.display = "block";
+  cartItemsContainer.innerHTML = cart.map(item => `
+    <div class="cart-line">
+      <div>
+        <strong>${item.name}</strong>
+        <small>السعر: ${item.newPrice} ج.م | شحن المنتج: ${item.shipping} ج.م</small>
+        <button class="remove" onclick="removeFromCart('${item.id}')">حذف المنتج</button>
+      </div>
+      <div class="qty">
+        <button onclick="changeQty('${item.id}', -1)">-</button>
+        <b>${item.qty}</b>
+        <button onclick="changeQty('${item.id}', 1)">+</button>
+      </div>
+    </div>
+  `).join("");
+
+  document.getElementById("subtotalPrice").textContent = `${subtotal} ج.م`;
+  document.getElementById("shippingPrice").textContent = `${shipping} ج.م`;
+  document.getElementById("finalTotalPrice").textContent = `${finalTotal} ج.م`;
+}
+
+// فتح وإغلاق النافذة
+document.getElementById("openCartBtn").onclick = () => {
+  updateCartUI();
+  cartOverlay.classList.add("show");
+};
+document.getElementById("closeCartBtn").onclick = () => cartOverlay.classList.remove("show");
+cartOverlay.onclick = (e) => { if (e.target === cartOverlay) cartOverlay.classList.remove("show"); };
+
+// إرسال الطلب إلى Google Sheets
+document.getElementById("orderForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (cart.length === 0) return;
+
+  const btn = document.getElementById("submitOrderBtn");
+  btn.disabled = true;
+  btn.textContent = "جاري تسجيل طلبك...";
+
+  const { finalTotal, totalQty } = calculateTotals();
+
+  const productIds = cart.map(i => i.id).join("+");
+  const productNames = cart.map(i => `${i.name} (${i.qty})`).join(" | ");
+
+  const orderData = {
+    productIds: productIds,
+    customer: document.getElementById("custName").value.trim(),
+    phone: document.getElementById("custPhone").value.trim(),
+    address: document.getElementById("custAddress").value.trim(),
+    productName: productNames,
+    qty: totalQty,
+    total: finalTotal
+  };
+
+  try {
+    const response = await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify(orderData)
+    });
+    const result = await response.json();
+
+    if (result.status === "success") {
+      showToast(`تم تسجيل طلبك بنجاح! رقم الطلب: ${result.orderId}`);
+      cart = [];
+      document.getElementById("orderForm").reset();
+      updateCartUI();
+      cartOverlay.classList.remove("show");
+    } else {
+      alert("حدث خطأ أثناء تسجيل الطلب: " + result.message);
+    }
+  } catch (err) {
+    alert("تعذر الاتصال بالسيرفر، تأكد من اتصال الإنترنت.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "تأكيد وإرسال الطلب ✅";
+  }
+});
+
+// بدء التحميل
+loadProducts();
+</script>
+</body>
+</html>
